@@ -1,12 +1,14 @@
-"use strict";
+import React, {Component} from "react";
+import {Link} from "react-router-dom"
 
-var React = require('React');
-var FAB = React.createClass({
-    render: function () {
-        return (
-
+export default class FAB extends Component {
+    render(){
+        return(
+            <div className="open-search">
+                <Link to = {"/search"}>
+                    Add a book
+                </Link>
+            </div>
         );
     }
-
-});
-module.exports = F$rest;
+}
