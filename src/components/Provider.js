@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+
 export const MyContext = React.createContext();
 
 export default class Provider extends Component {
@@ -9,6 +10,8 @@ export default class Provider extends Component {
             currentlyReading: [],
             wantToRead: [],
             read: [],
+
+
             addBooks: books => {
                 const currentlyReading = books.filter(
                     book => book.shelf === "currentlyReading");
@@ -16,9 +19,9 @@ export default class Provider extends Component {
                     book => book.shelf === "read");
                 const wantToRead = books.filter(
                     book => book.shelf === "wantToRead" );
-                this.setState({ books, currentlyReading, Read, wantToRead })
+                this.setState({ books, currentlyReading, Read, wantToRead });
             },
-            moveBook: (book,newShelf, allShelfs) => {
+            moveBook: (book,newShelf,allShelfs ) => {
                 console.log(newShelf)
                 const newBooks = this.state.books.map(allBooks =>{
                     const foundID = allShelfs[newShelf].find(
@@ -30,11 +33,12 @@ export default class Provider extends Component {
                     return allBooks;
                 });
                 this.state.addBooks(newBooks)
-            }
 
+            }
         };
+
     }
-    render() {
+    render(){
         return (<MyContext.Provider value={{...this.state}}>
                 {this.props.children}
             </MyContext.Provider>

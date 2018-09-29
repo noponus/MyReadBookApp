@@ -11,11 +11,12 @@ export default class Search extends Component {
             books: []
         };
     }
-    async componentDidMount(){
-        try{
-            const books= await getAll();
+
+    async componentDidMount() {
+        try {
+            const books = await getAll();
             this.props.addBooks(books)
-        }catch (e) {
+        } catch (e) {
             console.log(e);
         }
     }
@@ -34,13 +35,14 @@ export default class Search extends Component {
                     this.setState({books: results});
                 }
             } else {
-                this.setState({books: [] });
+                this.setState({books: []});
             }
 
-            } catch (error) {
-                console.log(error);
-            }
+        } catch (error) {
+            console.log(error);
+        }
     };
+
     render() {
         return (
             <div className="search-books">
@@ -62,18 +64,16 @@ export default class Search extends Component {
                     <ol className="books-grid">
                         {this.state.books.length > 0 &&
                         this.state.books.map(book => {
-                            const foundShelf = this.props.books.find(searchBook => searchBook.id===book.id);
-                            if(foundShelf){
-                                book.shelf=foundShelf.shelf;
-                            }else{
-                                book.shelf="none"
+                            const foundShelf = this.props.books.find(searchBook => searchBook.id === book.id);
+                            if (foundShelf) {
+                                book.shelf = foundShelf.shelf;
+                            } else {
+                                book.shelf = "none"
                             }
-
-                            console.log(foundShelf)
-                            return (<Book key={book.id}{...book} moveBook={this.props.moveBook} />);
+                            return (<Book key={book.id}{...book} moveBook={this.props.moveBook}/>);
                         })}
                         {this.state.books.length === 0 && (
-                            <h1 style={{textAlign:"center"}}>No Result found </h1>
+                            <h1 style={{textAlign: "center"}}>No Result found </h1>
                         )}
                     </ol>
                 </div>
